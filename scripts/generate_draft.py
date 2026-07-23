@@ -1,18 +1,26 @@
 """Gera um draft do CapCut a partir de video, audio e legenda (srt) opcionais.
 
-Uso:
+Uso (Windows):
     python scripts/generate_draft.py \
-        --draft-folder "/caminho/para/CapCut Drafts" \
+        --draft-folder "C:\\Users\\<voce>\\AppData\\Local\\CapCut\\User Data\\Projects\\com.lveditor.draft" \
         --name meu_video \
         --video assets/video.mp4 \
         --audio assets/audio.mp3 \
         --srt assets/legenda.srt
 
-O draft gerado precisa ser aberto no CapCut Desktop (Windows) para revisao,
-ajustes finais e exportacao do video renderizado.
+Uso (Mac):
+    python scripts/generate_draft.py \
+        --draft-folder ~/Movies/CapCut/"User Data"/Projects/com.lveditor.draft \
+        --name meu_video \
+        --video assets/video.mp4
+
+O draft gerado precisa ser aberto no CapCut Desktop para revisao, ajustes
+finais e exportacao do video renderizado.
 """
 
 import argparse
+import shutil
+import sys
 
 import pycapcut as cc
 from pycapcut import trange
@@ -37,6 +45,11 @@ def build_draft(draft_folder: str, name: str, video: str, audio: str | None, srt
         script.import_srt(srt, track_name="legenda")
 
     script.save()
+
+    if sys.platform == "darwin":
+        # CapCut Desktop no Mac le "draft_info.json" (mesmo schema, nome diferente do Windows).
+        shutil.copy(script.save_path, script.save_path.replace("draft_content.json", "draft_info.json"))
+
     return script.save_path
 
 

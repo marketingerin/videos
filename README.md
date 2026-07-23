@@ -13,7 +13,12 @@ CapCut Desktop.
   fade de audio) via script Python.
 - **O que ainda depende do app**: revisao visual e exportacao final do MP4.
   A exportacao automatizada por linha de comando so e suportada pelo CapCut
-  Desktop no **Windows**.
+  Desktop no **Windows**. No Mac, o app existe e le o mesmo schema de draft,
+  mas espera o arquivo com nome `draft_info.json` em vez de
+  `draft_content.json` — o script ja cria uma copia com esse nome
+  automaticamente quando roda no Mac, mas nao ha garantia formal de que o
+  CapCut Mac vai aceitar o draft (nao documentado oficialmente); vale testar
+  com um projeto de baixo risco primeiro.
 
 ## Setup
 
@@ -23,7 +28,16 @@ source .venv/bin/activate       # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+No Mac, o `pycapcut` depende da lib nativa MediaInfo para ler duracao/resolucao
+dos arquivos de midia:
+
+```bash
+brew install mediainfo
+```
+
 ## Uso
+
+Windows:
 
 ```bash
 python scripts/generate_draft.py \
@@ -34,9 +48,21 @@ python scripts/generate_draft.py \
   --srt assets/legenda.srt
 ```
 
+Mac:
+
+```bash
+python scripts/generate_draft.py \
+  --draft-folder ~/Movies/CapCut/"User Data"/Projects/com.lveditor.draft \
+  --name meu_video \
+  --video assets/video.mp4 \
+  --audio assets/audio.mp3 \
+  --srt assets/legenda.srt
+```
+
 Isso cria uma pasta de draft dentro de `--draft-folder`. Abra o CapCut
 Desktop e o projeto `meu_video` vai aparecer na lista de "Meus projetos"
-pronto para revisao e exportacao.
+pronto para revisao e exportacao. Se nao aparecer no Mac, feche e reabra o
+CapCut (ele so escaneia a pasta de projetos ao iniciar).
 
 `--audio` e `--srt` sao opcionais.
 
