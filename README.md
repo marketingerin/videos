@@ -72,3 +72,13 @@ CapCut (ele so escaneia a pasta de projetos ao iniciar).
   reaproveitando um projeto do CapCut ja montado e so trocando midia/texto.
 - Empacotar em um servico (ex.: FastAPI) para gerar drafts sob demanda.
 - Adicionar exportacao automatizada via CapCut Desktop no Windows.
+
+## Base de conhecimento
+
+[`docs/video-editing-knowledge-base.md`](docs/video-editing-knowledge-base.md)
+reune referencia de edicao de video do basico ao senior — fundamentos e
+teoria de montagem, especificacoes tecnicas (frame rate, codecs, entrega),
+correcao/gradacao de cor, audio, panorama de ferramentas/IA em 2026 e
+edicao por genero/progressao de carreira. Serve de base para decisoes
+futuras de automacao neste projeto (que tipo de edicao vale a pena
+automatizar, terminologia esperada, etc.).
