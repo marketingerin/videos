@@ -13,13 +13,22 @@ import subprocess
 import sys
 
 
+def _version_key(path: str) -> list[int]:
+    """Chave numerica a partir do nome da pasta de versao (o '*' do glob).
+
+    Usar sort de string escolheria '2.9.0' como maior que '2.10.0'; comparar
+    por inteiros garante que a versao realmente mais nova seja escolhida.
+    """
+    version_dir = os.path.basename(os.path.dirname(path))
+    return [int(p) if p.isdigit() else 0 for p in version_dir.split(".")]
+
+
 def find_windows_executable() -> str | None:
     local_appdata = os.environ.get("LOCALAPPDATA", "")
-    candidates = sorted(
-        glob.glob(os.path.join(local_appdata, "CapCut", "Apps", "*", "CapCut.exe")),
-        reverse=True,
-    )
-    return candidates[0] if candidates else None
+    candidates = glob.glob(os.path.join(local_appdata, "CapCut", "Apps", "*", "CapCut.exe"))
+    if not candidates:
+        return None
+    return max(candidates, key=_version_key)
 
 
 def launch_windows() -> None:

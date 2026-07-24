@@ -13,12 +13,17 @@ CapCut Desktop.
   fade de audio) via script Python.
 - **O que ainda depende do app**: revisao visual e exportacao final do MP4.
   A exportacao automatizada por linha de comando so e suportada pelo CapCut
-  Desktop no **Windows**. No Mac, o app existe e le o mesmo schema de draft,
-  mas espera o arquivo com nome `draft_info.json` em vez de
-  `draft_content.json` — o script ja cria uma copia com esse nome
-  automaticamente quando roda no Mac, mas nao ha garantia formal de que o
-  CapCut Mac vai aceitar o draft (nao documentado oficialmente); vale testar
-  com um projeto de baixo risco primeiro.
+  Desktop no **Windows**.
+- **Compatibilidade com o CapCut do Mac**: o script ja faz o necessario para o
+  projeto aparecer e abrir em "Meus projetos" no Mac — grava tambem o
+  `draft_info.json` (nome que o CapCut Mac le, alem do `draft_content.json` do
+  Windows), preenche o `draft_meta_info.json` (nome, caminho, duracao), gera um
+  `draft_id` unico por draft (essencial para gerar varios em lote sem colisao)
+  e carimba a plataforma como `mac`. Isso segue a documentacao/engenharia
+  reversa do formato, mas **ainda nao foi validado num CapCut Mac real** por
+  este ambiente nao ter o app — teste com um projeto de baixo risco primeiro e,
+  se o projeto nao aparecer, feche e reabra o CapCut (ele so escaneia a pasta ao
+  iniciar).
 
 ## Setup
 
@@ -64,7 +69,19 @@ Desktop e o projeto `meu_video` vai aparecer na lista de "Meus projetos"
 pronto para revisao e exportacao. Se nao aparecer no Mac, feche e reabra o
 CapCut (ele so escaneia a pasta de projetos ao iniciar).
 
-`--audio` e `--srt` sao opcionais.
+### Opcoes
+
+- `--audio` e `--srt` sao opcionais.
+- **Proporcao do canvas**: por padrao segue a resolucao do proprio video de
+  origem (um Reel 1080x1920 vira um projeto vertical). Para reenquadrar numa
+  proporcao especifica use `--aspect 9:16|16:9|1:1|4:5`, ou defina pixels
+  exatos com `--width` + `--height` (juntos). `--fps` ajusta os quadros por
+  segundo (padrao 30).
+- Se o audio for mais curto que o video, o script avisa e a trilha vai ate onde
+  o audio alcanca (nao quebra mais); se for mais longo, e cortado no tamanho do
+  video.
+- Caminhos com `~` e arquivos/pastas inexistentes dao mensagem clara em
+  portugues em vez de erro cru.
 
 ## Automacao completa (skill `capcut-edit`)
 

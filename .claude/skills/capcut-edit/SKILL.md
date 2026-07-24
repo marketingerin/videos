@@ -64,8 +64,8 @@ Only attempt this if:
   draft to be generated.
 
 If any of those aren't true, stop after Step 2 and tell the user to open/export manually, or to
-run the calibration step themselves first (`scripts/calibrate_windows.py`) — don't guess at
-coordinates or invent a calibration file.
+run the calibration step themselves first (`.claude/skills/capcut-edit/scripts/calibrate_windows.py`) —
+don't guess at coordinates or invent a calibration file.
 
 When calibration exists, run:
 
@@ -87,7 +87,7 @@ the user recalibrate.
 |---|---|
 | Wants a CapCut project ready to edit, will open/export manually | Step 1 + Step 2 |
 | On Windows, already calibrated | Step 1 + Step 2 + Step 3 |
-| On Windows, not calibrated yet, wants full automation | Step 1 + Step 2, then walk them through `scripts/calibrate_windows.py` (interactive — needs to run on their machine, in their own terminal, not on your behalf) |
+| On Windows, not calibrated yet, wants full automation | Step 1 + Step 2, then walk them through `.claude/skills/capcut-edit/scripts/calibrate_windows.py` (interactive — needs to run on their machine, in their own terminal, not on your behalf) |
 | On Mac, wants full automation | Explain Step 3 requires Windows (CapCut has no accessibility-API-friendly automation path on Mac in this skill); offer draft generation + manual export, or a Windows VM as the path to full automation |
 
 ## Being honest about reliability
