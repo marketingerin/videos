@@ -66,12 +66,24 @@ CapCut (ele so escaneia a pasta de projetos ao iniciar).
 
 `--audio` e `--srt` sao opcionais.
 
+## Automacao completa (skill `capcut-edit`)
+
+Alem de gerar o draft, `.claude/skills/capcut-edit/` empacota o fluxo como uma
+[skill do Claude Code](https://code.claude.com/docs) que tambem abre o CapCut
+Desktop automaticamente e, no Windows apos uma calibracao unica, simula os
+cliques para abrir o projeto gerado e exportar — ja que o CapCut nao tem API.
+Veja `.claude/skills/capcut-edit/SKILL.md` para o fluxo completo e
+`.claude/skills/capcut-edit/references/gui-automation.md` para como calibrar,
+limitacoes (e por que a automacao de clique quebra facil) e troubleshooting.
+Essa parte de automacao de clique so foi validada no Windows.
+
 ## Proximos passos possiveis
 
 - Trocar `scripts/generate_draft.py` por um modo "template" (`load_template`),
   reaproveitando um projeto do CapCut ja montado e so trocando midia/texto.
 - Empacotar em um servico (ex.: FastAPI) para gerar drafts sob demanda.
-- Adicionar exportacao automatizada via CapCut Desktop no Windows.
+- Substituir a automacao de clique por pywinauto (identificacao de elementos
+  via UI Automation), mais robusta a mudanca de resolucao/layout.
 
 ## Base de conhecimento
 
