@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Social Media Inbox Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📨</text></svg>"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">📨</span>
+        <div>
+          <h1>Inbox Manager</h1>
+          <p class="tagline">Instagram · Facebook · TikTok → ActiveCampaign</p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="mode-badge" class="badge">…</span>
+        <button id="sync-btn" class="btn btn-primary">↻ Atualizar</button>
+      </div>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="integrations" id="integrations"></section>
+
+    <nav class="filters" id="filters">
+      <button class="chip active" data-filter="all">Todas</button>
+      <button class="chip" data-filter="pending">Pendentes</button>
+      <button class="chip" data-filter="price">🔴 Fila de preço</button>
+      <button class="chip" data-filter="approved">Respondidas</button>
+      <button class="chip" data-filter="ignored">Ignoradas</button>
+    </nav>
+
+    <main id="board" class="board">
+      <div class="empty" id="empty-state">Carregando mensagens…</div>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <template id="card-template">
+      <article class="card">
+        <div class="card-head">
+          <span class="platform-tag"></span>
+          <span class="type-tag"></span>
+          <span class="lang-tag"></span>
+          <span class="status-tag"></span>
+        </div>
+        <div class="card-meta">
+          <strong class="sender"></strong>
+          <span class="time"></span>
+        </div>
+        <div class="category-row"><span class="category"></span></div>
+        <blockquote class="message"></blockquote>
+        <a class="post-link" target="_blank" rel="noopener" hidden>📎 Ver postagem</a>
+
+        <div class="reply-block">
+          <label>Resposta sugerida</label>
+          <textarea class="reply" rows="3"></textarea>
+          <p class="price-warning" hidden>
+            ⚠️ Pergunta sobre preço — escreva a resposta manualmente. Nenhuma
+            sugestão automática é gerada para valores.
+          </p>
+        </div>
+
+        <div class="lead-hints" hidden></div>
+
+        <div class="actions">
+          <button class="btn btn-approve">✅ Aprovar e Enviar</button>
+          <button class="btn btn-ignore">🗑️ Ignorar</button>
+        </div>
+        <div class="result" hidden></div>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
