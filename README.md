@@ -71,6 +71,21 @@ liga sozinha quando suas credenciais estão presentes:
 
 ## ☁️ Deploy online
 
+> ⚠️ Um repositório/PR no GitHub é **só o código** — não é um site no ar.
+> Para ter um endereço `https://...` que abre no navegador, é preciso
+> **publicar (deploy)** o app em um serviço de hospedagem. Abaixo, o caminho
+> mais rápido.
+
+### Publicar em ~2 minutos (Render — grátis)
+
+1. Faça o merge desta branch (ou aponte o Render para ela).
+2. Em <https://dashboard.render.com> → **New** → **Blueprint**.
+3. Selecione o repositório `marketingerin/videos`. O Render lê o `render.yaml`
+   e cria o serviço web sozinho.
+4. Clique **Apply**. Em ~2 min você recebe uma URL pública. Já funciona em
+   **modo demo**; preencha as credenciais depois em **Environment** para ativar
+   as integrações reais.
+
 O app escuta em `0.0.0.0` na porta `PORT` (definida automaticamente pela
 maioria das plataformas) e expõe `GET /health` para monitoramento.
 

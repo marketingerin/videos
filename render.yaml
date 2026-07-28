@@ -1,0 +1,31 @@
+# Blueprint de deploy para o Render (https://render.com).
+# Suba este repositório no Render como "Blueprint" e ele cria o serviço web
+# automaticamente. O app já funciona em modo demo; preencha as credenciais
+# abaixo (opcional) para ativar as integrações reais.
+services:
+  - type: web
+    name: social-media-inbox-manager
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # ── Credenciais opcionais (deixe em branco = modo demo) ──
+      - key: META_PAGE_ACCESS_TOKEN
+        sync: false
+      - key: META_PAGE_ID
+        sync: false
+      - key: META_IG_USER_ID
+        sync: false
+      - key: TIKTOK_ACCESS_TOKEN
+        sync: false
+      - key: ACTIVECAMPAIGN_BASE_URL
+        sync: false
+      - key: ACTIVECAMPAIGN_API_TOKEN
+        sync: false
+      - key: DASHBOARD_TOKEN
+        sync: false
