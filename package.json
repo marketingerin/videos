@@ -1,0 +1,19 @@
+{
+  "name": "social-media-inbox-manager",
+  "version": "1.0.0",
+  "description": "Painel online para gerenciar mensagens não respondidas no Instagram, Facebook e TikTok, sugerir respostas contextualizadas e integrar leads ao ActiveCampaign.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
