@@ -1,0 +1,7 @@
+node_modules/
+out/
+*.log
+legendador/public/*.mp4
+legendador/public/*.json
+legendador/clip_words.srt
+legendador/audio.wav
